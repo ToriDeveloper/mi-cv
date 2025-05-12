@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mi CV - Laura Gómez</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; line-height: 1.6; }
+    h1, h2 { color: #333; }
+  </style>
+</head>
+<body>
+  <h1>Laura Gómez</h1>
+  <p><strong>Email:</strong> laura@email.com</p>
+  <p><strong>Teléfono:</strong> +34 600 000 000</p>
+
+  <h2>Sobre mí</h2>
+  <p>Profesional del área de marketing con 5 años de experiencia...</p>
+
+  <h2>Formación académica</h2>
+  <ul>
+    <li>Grado en Publicidad y RRPP - Universidad Complutense de Madrid (2015-2019)</li>
+  </ul>
+
+  <h2>Experiencia laboral</h2>
+  <ul>
+    <li>Ejecutiva de cuentas - Agencia XYZ (2020 - Presente)</li>
+  </ul>
+</body>
+</html>
