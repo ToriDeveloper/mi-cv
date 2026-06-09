@@ -1,555 +1,363 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>David Toribio Fernández | Administrador de Sistemas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>David Toribio Fernández | Administrador de Sistemas</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+    --bg:#f5f7fa;
+    --card:#ffffff;
+    --text:#111827;
+    --text-light:#6b7280;
+    --border:#e5e7eb;
+    --primary:#2563eb;
+    --primary-soft:#eff6ff;
+    --shadow:0 20px 40px rgba(15,23,42,.08);
+    --radius:24px;
+}
 
-    <style>
-        :root {
-            --bg: #f5f7fa;
-            --card: #ffffff;
-            --text: #111827;
-            --text-light: #6b7280;
-            --border: #e5e7eb;
-            --primary: #2563eb;
-            --primary-soft: #eff6ff;
-            --shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
-            --radius: 24px;
-        }
+@media (prefers-color-scheme: dark){
+    :root{
+        --bg:#0f172a;
+        --card:#111827;
+        --text:#f9fafb;
+        --text-light:#94a3b8;
+        --border:#1f2937;
+        --primary:#60a5fa;
+        --primary-soft:rgba(96,165,250,.12);
+        --shadow:0 20px 40px rgba(0,0,0,.35);
+    }
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
+.wrapper{max-width:1200px;margin:auto;padding:40px 20px 60px;}
+.hero,.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+}
+.hero{
+    display:flex;
+    gap:32px;
+    align-items:center;
+    padding:40px;
+    margin-bottom:24px;
+}
+.hero img{
+    width:140px;height:140px;
+    object-fit:cover;
+    border-radius:28px;
+    border:4px solid #fff;
+}
+.hero-content h1{
+    font-size:clamp(2rem,4vw,3rem);
+    font-weight:800;
+}
+.subtitle{
+    color:var(--primary);
+    font-weight:600;
+    margin:8px 0 20px;
+}
+.description,.availability{
+    color:var(--text-light);
+}
+.availability{margin-top:12px;}
 
-        html {
-            scroll-behavior: smooth;
-        }
+.contact-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:24px;
+}
+.contact-links a,.contact-links span{
+    padding:10px 16px;
+    border:1px solid var(--border);
+    border-radius:999px;
+    background:var(--card);
+    text-decoration:none;
+    color:inherit;
+}
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
+.grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:24px;
+}
+.column{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+.card{
+    padding:30px;
+    transition:.3s;
+}
+.card:hover{
+    transform:translateY(-4px);
+}
+.card h2{
+    margin-bottom:24px;
+}
 
-        .wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px 60px;
-        }
+.timeline{
+    border-left:2px solid var(--border);
+    padding-left:24px;
+}
+.timeline-item{
+    margin-bottom:32px;
+    position:relative;
+}
+.timeline-item::before{
+    content:"";
+    width:14px;height:14px;
+    border-radius:50%;
+    background:var(--primary);
+    position:absolute;
+    left:-32px;
+    top:8px;
+}
+.date{color:var(--text-light);font-size:.9rem;}
+.position{font-weight:700;}
+.company{color:var(--primary);font-weight:600;margin-bottom:12px;}
+.timeline ul{padding-left:18px;}
+.timeline li{margin-bottom:6px;color:var(--text-light);}
 
-        /* HEADER */
+.skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+.skill{
+    background:var(--primary-soft);
+    color:var(--primary);
+    border:1px solid var(--border);
+    padding:8px 14px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:.9rem;
+}
 
-        .hero {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 32px;
-            padding: 40px;
-            box-shadow: var(--shadow);
+.list-item{margin-bottom:20px;}
+.list-item p,.project p{
+    color:var(--text-light);
+}
 
-            display: flex;
-            gap: 32px;
-            align-items: center;
-            margin-bottom: 32px;
-        }
+.projects{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+.project{
+    padding:20px;
+    border:1px solid var(--border);
+    border-radius:18px;
+}
 
-        .hero img {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 28px;
-            border: 4px solid white;
-            box-shadow: 0 12px 30px rgba(0,0,0,.12);
-            flex-shrink: 0;
-        }
+footer{
+    text-align:center;
+    color:var(--text-light);
+    margin-top:40px;
+}
 
-        .hero-content {
-            flex: 1;
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        .description {
-            color: var(--text-light);
-            max-width: 800px;
-            margin-bottom: 24px;
-        }
-
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .contact-links a,
-        .contact-links span {
-            background: #f9fafb;
-            border: 1px solid var(--border);
-            padding: 10px 16px;
-            border-radius: 999px;
-            font-size: .95rem;
-            transition: .25s ease;
-        }
-
-        .contact-links a:hover {
-            background: var(--primary-soft);
-            border-color: #bfdbfe;
-            transform: translateY(-2px);
-        }
-
-        /* GRID */
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1.2fr .8fr;
-            gap: 24px;
-        }
-
-        .column {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        /* CARD */
-
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
-            transition: .3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h2 {
-            font-size: 1.3rem;
-            margin-bottom: 24px;
-            font-weight: 700;
-        }
-
-        /* TIMELINE */
-
-        .timeline {
-            position: relative;
-            padding-left: 28px;
-        }
-
-        .timeline::before {
-            content: "";
-            position: absolute;
-            left: 8px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 32px;
-        }
-
-        .timeline-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .timeline-item::before {
-            content: "";
-            position: absolute;
-            left: -24px;
-            top: 8px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: 3px solid white;
-            box-shadow: 0 0 0 2px var(--primary);
-        }
-
-        .date {
-            color: var(--text-light);
-            font-size: .9rem;
-            margin-bottom: 4px;
-        }
-
-        .position {
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
-        .company {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .timeline ul {
-            padding-left: 18px;
-        }
-
-        .timeline li {
-            margin-bottom: 8px;
-            color: var(--text-light);
-        }
-
-        /* SKILLS */
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .skill {
-            background: var(--primary-soft);
-            color: var(--primary);
-            border: 1px solid #bfdbfe;
-            padding: 10px 14px;
-            border-radius: 999px;
-            font-size: .92rem;
-            font-weight: 600;
-        }
-
-        /* LIST */
-
-        .list {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .list-item h3 {
-            font-size: 1rem;
-            margin-bottom: 6px;
-        }
-
-        .list-item p {
-            color: var(--text-light);
-        }
-
-        footer {
-            text-align: center;
-            color: var(--text-light);
-            margin-top: 40px;
-            font-size: .9rem;
-        }
-
-        @media (max-width: 900px) {
-
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-links {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 600px) {
-
-            .hero {
-                padding: 30px 24px;
-            }
-
-            .card {
-                padding: 24px;
-            }
-
-            .hero img {
-                width: 120px;
-                height: 120px;
-            }
-        }
-    </style>
+@media(max-width:900px){
+    .hero{flex-direction:column;text-align:center;}
+    .grid{grid-template-columns:1fr;}
+    .contact-links{justify-content:center;}
+}
+</style>
 </head>
 
 <body>
-
-    <div class="wrapper">
-
-        <!-- HERO -->
-
-        <header class="hero">
-
-            <img src="foto.jpeg" alt="Foto de David Toribio Fernández">
-
-            <div class="hero-content">
-
-                <h1>David Toribio Fernández</h1>
-
-                <p class="subtitle">
-                    Administrador de Sistemas
-                </p>
-
-                <p class="description">
-                    Administrador de Sistemas con experiencia en soporte técnico,
-                    virtualización e infraestructura IT. Especializado en VMware,
-                    Windows Server y administración de redes. Destaco por mi
-                    capacidad de adaptación, aprendizaje continuo y orientación
-                    a la resolución de problemas.
-                </p>
-
-                <div class="contact-links">
-
-                    <span>📧 davidtoribiof27@gmail.com</span>
-
-                    <span>📱 +34 659 05 61 63</span>
-
-                    <a href="https://www.linkedin.com/in/david-toribio-fernandez-89890b204/"
-                       target="_blank">
-                        LinkedIn
-                    </a>
-
-                    <a href="https://www.infojobs.net/candidate/cv/view/index.xhtml"
-                       target="_blank">
-                        InfoJobs
-                    </a>
-
-                </div>
-
-            </div>
-
-        </header>
-
-        <!-- CONTENIDO -->
-
-        <main class="grid">
-
-            <!-- IZQUIERDA -->
-
-            <div class="column">
-
-                <section class="card">
-
-                    <h2>Experiencia profesional</h2>
-
-                    <div class="timeline">
-
-                        <article class="timeline-item">
-
-                            <div class="date">
-                                2023 – Actualidad
-                            </div>
-
-                            <div class="position">
-                                Administrador de Sistemas
-                            </div>
-
-                            <div class="company">
-                                MONTEARENAS SAU
-                            </div>
-
-                            <ul>
-                                <li>Mantenimiento de equipos informáticos.</li>
-
-                                <li>Configuración y administración de redes locales.</li>
-
-                                <li>Soporte técnico a usuarios.</li>
-
-                                <li>Virtualización con VMware y vSphere.</li>
-
-                                <li>Gestión de copias de seguridad, firewalls y NAS.</li>
-
-                                <li>Configuración y administración de Ubuntu Linux y Windows Server.</li>
-                            </ul>
-
-                        </article>
-
-                        <article class="timeline-item">
-
-                            <div class="date">
-                                2021 – 2023
-                            </div>
-
-                            <div class="position">
-                                Director / Fundador
-                            </div>
-
-                            <div class="company">
-                                Dt Designs
-                            </div>
-
-                            <ul>
-                                <li>Diseño y desarrollo web.</li>
-
-                                <li>Optimización SEO.</li>
-
-                                <li>Sistemas microinformáticos y redes.</li>
-
-                                <li>Configuración e instalación de software y hardware.</li>
-
-                                <li>Implementación de servicios en la nube.</li>
-                            </ul>
-
-                        </article>
-
-                        <article class="timeline-item">
-
-                            <div class="date">
-                                Febrero 2020 – Junio 2020
-                            </div>
-
-                            <div class="position">
-                                Diseñador Web
-                            </div>
-
-                            <div class="company">
-                                KEIVA SOLUTIONS
-                            </div>
-
-                            <ul>
-                                <li>Construcción y mantenimiento de páginas web.</li>
-
-                                <li>Gestión de campañas publicitarias.</li>
-
-                                <li>Administración de redes sociales.</li>
-                            </ul>
-
-                        </article>
-
-                    </div>
-
-                </section>
-
-                <section class="card">
-
-                    <h2>Formación académica</h2>
-
-                    <div class="list">
-
-                        <div class="list-item">
-                            <h3>
-                                Bachillerato de Ciencias Tecnológicas
-                            </h3>
-
-                            <p>
-                                IES La Gándara · 2014 – 2017
-                            </p>
-                        </div>
-
-                        <div class="list-item">
-                            <h3>
-                                Técnico Superior en Desarrollo de Aplicaciones Web
-                            </h3>
-
-                            <p>
-                                CIFP Ponferrada · 2017 – 2020
-                            </p>
-                        </div>
-
-                    </div>
-
-                </section>
-
-            </div>
-
-            <!-- DERECHA -->
-
-            <div class="column">
-
-                <section class="card">
-
-                    <h2>Tecnologías y habilidades</h2>
-
-                    <div class="skills">
-
-                        <span class="skill">VMware</span>
-                        <span class="skill">vSphere</span>
-                        <span class="skill">Windows Server</span>
-                        <span class="skill">Ubuntu Linux</span>
-                        <span class="skill">Redes</span>
-                        <span class="skill">NAS</span>
-                        <span class="skill">Firewalls</span>
-                        <span class="skill">Backups</span>
-                        <span class="skill">Soporte Técnico</span>
-                        <span class="skill">Cloud</span>
-                        <span class="skill">SEO</span>
-                        <span class="skill">HTML</span>
-                        <span class="skill">CSS</span>
-                        <span class="skill">JavaScript</span>
-                        <span class="skill">Trabajo en equipo</span>
-                        <span class="skill">Adaptación</span>
-                        <span class="skill">Responsabilidad</span>
-                        <span class="skill">Aprendizaje continuo</span>
-
-                    </div>
-
-                </section>
-
-                <section class="card">
-
-                    <h2>Cursos</h2>
-
-                    <div class="list">
-
-                        <div class="list-item">
-
-                            <h3>
-                                Riesgos Laborales
-                            </h3>
-
-                            <p>
-                                CIFP Ponferrada · Junio 2020 · 20 horas
-                            </p>
-
-                        </div>
-
-                        <div class="list-item">
-
-                            <h3>
-                                Integración de componentes software en páginas web
-                            </h3>
-
-                            <p>
-                                Enter Academia · Octubre 2020 – Diciembre 2020 · 180 horas
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-            </div>
-
-        </main>
-
-        <footer>
-            © 2025 David Toribio Fernández · Diseñado con un estilo inspirado en Apple, Notion y Linear.
-        </footer>
-
+<div class="wrapper">
+
+<header class="hero">
+    <img src="foto.jpeg" alt="Foto de David Toribio Fernández">
+
+    <div class="hero-content">
+        <h1>David Toribio Fernández</h1>
+
+        <p class="subtitle">
+            Administrador de Sistemas · Virtualización · Infraestructura IT
+        </p>
+
+        <p class="description">
+            Administrador de Sistemas con experiencia en soporte técnico,
+            virtualización e infraestructura IT. Especializado en VMware,
+            Windows Server y administración de redes.
+        </p>
+
+        <p class="availability">
+            Comprometido con el aprendizaje continuo y la mejora de infraestructuras IT.
+        </p>
+
+        <div class="contact-links">
+            <span>📧 davidtoribiof27@gmail.com</span>
+            <span>📱 +34 659 05 61 63</span>
+
+            <a href="https://www.linkedin.com/in/david-toribio-fernandez-89890b204/" target="_blank">
+                LinkedIn
+            </a>
+
+            <a href="https://www.infojobs.net/candidate/cv/view/index.xhtml" target="_blank">
+                InfoJobs
+            </a>
+        </div>
     </div>
+</header>
 
+<main class="grid">
+
+<div class="column">
+
+<section class="card">
+<h2>Experiencia profesional</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+    <div class="date">2023 – Actualidad</div>
+    <div class="position">Administrador de Sistemas</div>
+    <div class="company">MONTEARENAS SAU</div>
+
+    <ul>
+        <li>Mantenimiento de equipos informáticos.</li>
+        <li>Administración de redes locales.</li>
+        <li>Soporte técnico.</li>
+        <li>Virtualización con VMware y vSphere.</li>
+        <li>Gestión de backups, firewalls y NAS.</li>
+        <li>Configuración de Ubuntu y Windows Server.</li>
+    </ul>
+</div>
+
+<div class="timeline-item">
+    <div class="date">2021 – 2023</div>
+    <div class="position">Director / Fundador</div>
+    <div class="company">Dt Designs</div>
+
+    <ul>
+        <li>Diseño y desarrollo web.</li>
+        <li>SEO.</li>
+        <li>Sistemas microinformáticos y redes.</li>
+        <li>Servicios cloud.</li>
+    </ul>
+</div>
+
+<div class="timeline-item">
+    <div class="date">Febrero 2020 – Junio 2020</div>
+    <div class="position">Diseñador Web</div>
+    <div class="company">KEIVA SOLUTIONS</div>
+
+    <ul>
+        <li>Construcción y mantenimiento de páginas web.</li>
+        <li>Campañas publicitarias.</li>
+        <li>Gestión de redes sociales.</li>
+    </ul>
+</div>
+
+</div>
+</section>
+
+<section class="card">
+<h2>Proyectos destacados</h2>
+
+<div class="projects">
+
+<div class="project">
+    <h3>🖥️ Infraestructura y virtualización</h3>
+    <p>Administración de entornos VMware/vSphere y resolución de incidencias sobre infraestructura empresarial.</p>
+</div>
+
+<div class="project">
+    <h3>🌐 Dt Designs</h3>
+    <p>Desarrollo web, posicionamiento SEO y despliegue de soluciones para clientes.</p>
+</div>
+
+<div class="project">
+    <h3>🔧 Home Lab</h3>
+    <p>Laboratorio personal para pruebas con Windows Server, Ubuntu, virtualización y servicios de red.</p>
+</div>
+
+</div>
+</section>
+
+<section class="card">
+<h2>Formación académica</h2>
+
+<div class="list-item">
+    <h3>Bachillerato de Ciencias Tecnológicas</h3>
+    <p>IES La Gándara · 2014–2017</p>
+</div>
+
+<div class="list-item">
+    <h3>Técnico Superior en Desarrollo de Aplicaciones Web</h3>
+    <p>CIFP Ponferrada · 2017–2020</p>
+</div>
+
+</section>
+
+</div>
+
+<div class="column">
+
+<section class="card">
+<h2>Tecnologías y habilidades</h2>
+
+<div class="skills">
+<span class="skill">VMware</span>
+<span class="skill">vSphere</span>
+<span class="skill">Windows Server</span>
+<span class="skill">Ubuntu Linux</span>
+<span class="skill">Redes</span>
+<span class="skill">NAS</span>
+<span class="skill">Firewalls</span>
+<span class="skill">Backups</span>
+<span class="skill">Soporte Técnico</span>
+<span class="skill">Cloud</span>
+<span class="skill">SEO</span>
+<span class="skill">HTML</span>
+<span class="skill">CSS</span>
+<span class="skill">JavaScript</span>
+<span class="skill">Trabajo en equipo</span>
+<span class="skill">Adaptación</span>
+<span class="skill">Responsabilidad</span>
+<span class="skill">Aprendizaje continuo</span>
+</div>
+</section>
+
+<section class="card">
+<h2>Cursos</h2>
+
+<div class="list-item">
+<h3>Riesgos Laborales</h3>
+<p>CIFP Ponferrada · Junio 2020 · 20 horas</p>
+</div>
+
+<div class="list-item">
+<h3>Integración de componentes software en páginas web</h3>
+<p>Enter Academia · Octubre 2020 – Diciembre 2020 · 180 horas</p>
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+<footer>
+© 2025 David Toribio Fernández ·
+</footer>
+
+</div>
 </body>
 </html>
